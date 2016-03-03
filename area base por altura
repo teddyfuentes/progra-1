@@ -1,0 +1,22 @@
+// baseporaltura : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include"conio.h"
+#include"math.h"
+
+using namespace std;
+
+void main()
+{
+
+	float a,b,area;
+	cout<<"ingresar la base del traiangulo";
+	cin>>a;
+	cout<<"ingresar la altura del triangulo";
+	cin>>b;
+	area= (a*b)/2;
+	cout <<"el area de este hermoso triangulo  es:"<<area;
+	getch();
+}
