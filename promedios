@@ -1,0 +1,41 @@
+// promedio.cpp : Defines the entry point for the console application.
+
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+void main ()
+
+{
+	int i,n; 
+	float np,p1,p2,p3,ef,nf,s;
+	cout<<"ingrese la cantidad de alumnos"<<endl;
+	cin>>n;
+	s=0;
+    i=0;
+	while (i<n)
+	{
+		cout<<"ingresar nota practica"<<endl;
+		cin>>np;
+		cout<<"ingresar nota del primer parcial"<<endl;
+		cin>>p1;
+		cout<<"ingresar nota del segundo parcial"<<endl;
+		cin>>p2;
+		cout<<"ingresar nota del tercer parcial"<<endl;
+		cin>>p3;
+		cout<<"ingresar la nota final"<<endl;
+		cin>>ef; 
+        nf=(np*0.2)+(((p1+p2+p3)/3)*0.4)+(ef*0.4);
+		cout<<"la nota final es: " <<nf<<endl;
+		getch();
+		system;
+		s=s+nf;
+		i=i+1;
+	}
+	cout<<"la suma de todos los promedios es "<<s<<endl;
+	cout<<"el promedio de los estudiantes es" <<s/n<<endl;
+	getch();
+
+}
+
