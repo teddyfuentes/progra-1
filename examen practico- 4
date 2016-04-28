@@ -1,1 +1,22 @@
 
+// cuatro.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream> 
+#include "conio.h"
+#include "math.h"
+using namespace std;
+void main()
+{
+	float x;
+	int n,suma;
+	cout<<"ingresar el valor de n"<<endl;
+	cin>>n;
+	cout<<"ingresar el valor de x";
+	cin>>x;
+	suma=(((8+8+(n-1)*(pow(x,n)/(n+1))*n)/2));
+	cout<<"la suma es: "<<suma<<endl;
+	getch();
+ 
+}
