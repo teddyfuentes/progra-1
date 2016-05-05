@@ -1,0 +1,34 @@
+// funcioness.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+bool par_num (int a);
+void main ()
+{
+	bool z;
+	int numero;
+	cout<<"ingresar un numero ";
+	cin>>numero;
+	z=par_num(numero);
+	if (z)
+		cout<<"es par";
+	else 
+		cout<<"es impar";
+	getch();
+}
+	bool par_num(int a)
+		{
+	
+			if (a%2==0)
+			return true;
+		else 
+		    return false;
+		}
+
+
+
+
