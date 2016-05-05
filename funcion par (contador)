@@ -11,27 +11,29 @@ void main ()
 {
 	bool z;
 	int i,n, numero;
-	cout<<"cantidad de veces a repetir!"<<endl;
+	cout<<"cantidad de veces a repetir:"<<endl;
 	cin>>n;
 	for (i=1;i<=n;i++){
-	cout<<"ingresar numero "<<endl;
+	cout<<"ingresar numero:"<<endl;
 	cin>>numero;
 	z=par_num(numero);
 	if (z)
-		cout<<"es par";
+		cout<<"es par"<<endl;
 	else 
-		cout<<"es impar";
+		cout<<"es impar"<<endl;
+	}
 	-getch();
 }
-}
 	bool par_num(int a)
-		{
+	   {
 	
 			if (a%2==0)
 			return true;
 		else 
 		    return false;
 		}
+
+
 
 
 
