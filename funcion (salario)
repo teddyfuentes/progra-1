@@ -1,0 +1,32 @@
+// funciones-salario.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+float total(float horas,float costo);
+	void main()
+{
+	int n,i,c,p;
+	float salario,z;
+	cout<<"ingresar la cantidad de trabajadores"<<endl;
+	cin>>n;
+    for (i=1;i<=n;i++){
+		cout<<"ingresar cantidad de horas"<<endl;
+		cin>>c;
+		cout<<"precio por cada hora de trabajo"<<endl;
+		cin>>p;
+		z=total(c,p);
+		cout<<z<<endl;
+}
+	getch();
+}
+	float total(float horas, float costo)
+	{
+		float t;
+		t=horas*costo;
+		return t;
+	}
+
+
