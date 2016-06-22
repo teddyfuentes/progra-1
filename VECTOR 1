@@ -1,0 +1,73 @@
+// vector promedio.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define MAX 100 
+void cargar(double a[],int tam); 
+void mostrar (double a[],int tam);
+double promedio(double a[],int tam);
+double mayor(double a[], int tam);
+double menor(double a[], int tam);
+using namespace std; 
+void main()
+{
+	double v[MAX], prom, may,men ; 
+	int n;
+	do{
+	cout<<"ingresar tamaño del vector"<<endl; 
+	cin>>n;
+	}while (n<0 || n>=100);
+	cargar (v,n);
+	
+    prom = promedio (v,n);
+	cout<<"el promedio es"<<prom<<endl;
+	may = mayor (v,n);
+	cout<<"el mayor es "<<may<<endl;
+	men = menor (v,n);
+	cout <<"el menor es "<<men<<endl;
+    cout << "El vector es: " << endl;
+	mostrar(v,n);
+
+	getch();
+}
+
+void cargar (double a[], int tam)
+{
+	for (int i=0;i<tam;i++) {
+		cout<<"a["<<i<<"]=";
+	    cin>>a[i]; 
+
+		}
+} 
+void mostrar(double a[], int tam)
+{
+	for(int i=0;i<tam;i++)
+	{
+		cout<<"a["<<i<<"]="<<a[i]<<endl;
+	}
+}
+double promedio (double a[], int tam)
+{
+	double p=0;
+	for (int i=0;i<tam;i++)
+	p=p+a[i];
+	return (p/tam);
+}
+double mayor(double a[], int tam)
+{ 
+	double may; 
+	may= a[0];
+	for(int i=0;i<tam;i++) 
+		if(a[i]>a[0]) may=a[i];
+	return (may);
+}
+double menor(double a[], int tam) 
+{
+	double men; 
+   men= a[0];
+   for (int i=0;i<tam;i++)
+	   if (a[i]<a[0]) men=a[i] ;
+   return (men);
+}
