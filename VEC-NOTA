@@ -1,0 +1,70 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 100 
+using namespace std;
+void cargar(double  a[], string b[], int tam);
+void mostrar(double  a[],string b[] ,int tam);
+void burbuja(double a[], string b[], int tam);
+void main ()
+{
+      double v[MAX];
+	  string pn[MAX];
+	  int n,a;
+	  cout<<"ingresar la cantidad de alumnos "<<endl;
+	  cin>>n;
+	  cargar (v, pn, n);
+
+
+	  burbuja (v,pn,n);
+	  mostrar (v,pn,n);
+		 getch();
+}
+void cargar(double  a[], string b[], int tam)
+{
+	for (int i=0;i<tam;i++)
+	{
+	cout << "Nombre del alumno: "; cin >> b[i];
+	cout << "Su nota es: "; cin >> a[i];
+	}
+}
+void mostrar (double  a[], string b[] ,int tam)
+{
+	for (int i=0;i<tam;i++)
+	{
+	cout << "nombre del alumno:"<<b[i]<<endl;
+	cout<< "su nota es"<< a[i]<<endl;
+	}
+}
+void burbuja(double a[], string b[], int tam)
+{
+	int aux;
+	string auxNombre;
+	 for (int i=0;i<tam;i++)
+
+	 {for (int j=i+1;j<tam; j++)
+
+	    {  if (a[i]<a[j]) 
+			{
+			  aux=a[i];
+		      a[i]=a[j];
+	          a[j]=aux;
+
+
+				auxNombre=b[i];
+				b[i] = b[j];
+				b[j]=auxNombre;
+			}
+	    }
+	 }
+}
+	 
+
+
+
+
+
+
+
+
