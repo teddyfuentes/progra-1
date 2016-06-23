@@ -1,0 +1,76 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define MAX 100 
+void cargar(double a[],int tam); 
+void mostrar (double a[],int tam);
+void burbuja(double a[], int tam);
+using namespace std;
+void main()
+{
+	double a[MAX], b[MAX], d[MAX], pn[MAX], np[MAX];
+	int n, c, s, p, v;
+	cout<<"ingresar tamaño del primer vector"<<endl;
+	cin >> n;
+	cout<<"ingresar tamaño del segundo vector"<<endl;
+	cin >> c;
+	cout<< "InGrEsAr TamANO DeL tercer Vector" << endl;
+	cin >> p;
+	cout << "Ingreasr tamano del cuarto vector" << endl;
+	cin >> v;
+	cout<<"cargar el primer vector"<<endl;
+	cargar(a, n);
+	cout<<"cargar el segundo vetor"<<endl;
+	cargar(b, c);
+	cout <<"Cargar el tercer vector" << endl;
+	cargar(pn, p);
+	cout << "Cargar el cuarto vector" << endl;
+	cargar(np, v);
+	s=n+c+p+v;
+	for (int i = 0; i < s; i++)
+	{
+		if (i < n) d[i] = a[i];
+		if (i >= n && i < n+c) d[i] = b[i-n];
+		if (i >= n+c && i < n+c+v) d[i] = pn[i-n-c];
+		if (i >= n+c+v) d[i] = np[i-n-c-v];
+	}
+
+	cout << endl;
+	burbuja(d, s);
+	mostrar(d, s);
+	getch();
+}
+
+void cargar (double a[], int tam)
+{
+	for (int i=0;i<tam;i++) {
+		cout<<"a["<<i<<"]=";
+	    cin>>a[i]; 
+
+		}
+} 
+
+void mostrar(double a[], int tam)
+{
+	for(int i=0;i<tam;i++)
+	{
+		cout<<"a["<<i<<"]="<<a[i]<<endl;
+	}
+}
+
+void burbuja(double a[], int tam)
+{
+	double aux;
+	for (int i = 0; i < tam; i++)
+	{
+		for (int j = i+1; j < tam; j++)
+		{
+			if (a[i] > a[j])
+			{
+				aux = a[i];
+				a[i] = a[j];
+				a[j] = aux;
+			}
+		}
+	}
+}
