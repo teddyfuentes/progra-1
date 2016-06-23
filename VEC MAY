@@ -1,0 +1,68 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define MAX 100 
+void cargar(double a[],int tam); 
+void mostrar (double a[],int tam);
+void burbuja(double a[], int tam);
+double mayor(double a[], int tam);
+double fact(int n);
+using namespace std;
+void main()
+{
+	double a[MAX], b[MAX], may, mayA, mayB;
+	int n, p;
+	cin >> n >> p;
+	cargar(a, n);
+	cargar(b, p);
+	mayA = mayor(a, n);
+	mayB = mayor(b, p);
+	if (mayA > mayB) may = mayA;
+	else may = mayB;
+	cout << may << endl;
+	getch();
+}
+
+void cargar (double a[], int tam)
+{
+	for (int i=0;i<tam;i++) {
+		cout<<"a["<<i<<"]=";
+	    cin>>a[i]; 
+
+		}
+} 
+
+void mostrar(double a[], int tam)
+{
+	for(int i=0;i<tam;i++)
+	{
+		cout<<"a["<<i<<"]="<<a[i]<<endl;
+	}
+}
+
+void burbuja(double a[], int tam)
+{
+	double aux;
+	for (int i = 0; i < tam; i++)
+	{
+		for (int j = i+1; j < tam; j++)
+		{
+			if (a[i] > a[j])
+			{
+				aux = a[i];
+				a[i] = a[j];
+				a[j] = aux;
+			}
+		}
+	}
+}
+
+double mayor(double a[], int tam)
+{
+	double may = a[0];
+	for (int i = 0; i < tam; i++)
+	{
+		if (a[i] > may) may = a[i];
+	}
+	return may;
+}
