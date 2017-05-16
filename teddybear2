@@ -1,0 +1,28 @@
+#include <iostream>
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "string"
+#include "archivoVenta.h"
+using namespace std;
+
+
+
+void main ()
+{
+	int numeroRegistro, numeroRegistroVenta, eliminar;
+	crearArchivo();
+	adicionarVentas();
+	listaVentas();
+	cout<<endl<<"ingresar numero de registro de venta que desea buscar "<<endl;
+	cin>>numeroRegistro;
+	buscarVenta(numeroRegistro);
+	cout<<"ingresar el numero de registro de la venta que desea modificar "<<endl;
+	cin>>numeroRegistroVenta;
+	modificarVenta(numeroRegistroVenta);
+
+	cout<<"ingresar el numero de registro de la venta que desea eliminar"<<endl;
+	cin>>eliminar;
+	eliminarVenta(numeroRegistro);
+	getch();
+}
