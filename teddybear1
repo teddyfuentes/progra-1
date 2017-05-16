@@ -1,0 +1,232 @@
+#include "string"
+#include "stdio.h"
+using namespace std;
+char direccionArchivoVentas[]={"archivoVentas.dat"};
+struct registroVentas{
+	int IdVenta;
+	char fecha[10];
+	float precio;
+	int IdVuelo;
+	int IdAsiento;
+	int IdCliente;
+	char estadoVenta;
+};
+
+void crearArchivo()
+{
+	FILE *ptr;
+	ptr=fopen(direccionArchivoVentas,"ab");
+	fclose(ptr);
+	cout<<"ARCHIVO CREADO CORRECTAMENTE"<<endl;
+	getch();
+}
+void adicionarVentas(){
+	FILE *ptr;
+	registroVentas registro;
+	ptr = fopen(direccionArchivoVentas,"ab");
+
+
+	cout << "Introduzca el Id de la venta: ";
+	cin>> registro.IdVenta;
+
+
+	cout<<"Introduza la fecha de la venta (DD/MM/AA): "; //dudaaaaa
+	do{
+		gets(registro.fecha);
+	}while(strlen(registro.fecha) == 0);
+
+
+	cout<<"introduzca el precio: ";  //dudaa
+		cin>>registro.precio;
+
+
+	cout<<"introduzca el Id del vuelo:";//dudaa
+	cin>>registro.IdVuelo;
+
+	cout<<"introduzca el Id del asiento	:";//dudaa
+	cin>>registro.IdAsiento;
+		
+	cout<<"introduzca el Id del cliente	: ";  //duddaaa
+	cin>> registro.IdCliente;
+	
+	registro.estadoVenta  = 'A';
+	fwrite(&registro,sizeof(registro),1,ptr);
+	cout<<endl<<" Nueva venta agregada correctamente ";
+	
+	fclose(ptr);
+}
+void listaVentas(){
+	FILE *ptr;
+	registroVentas registro;
+	cout<<endl<<"Id venta"<<" "<<" fecha "<<" "<<"precio"<<" "<<"IdVuelo"<<" "<<"IdAsiento"<<" "<<"IdCliente"<<endl; //dudaa
+	cout<<"----------------------------------------------------------"<<endl;
+	int contador = 0;
+	ptr = fopen(direccionArchivoVentas,"rb");
+
+	if(ptr != NULL)
+	{
+		fread(&registro,sizeof(registro),1,ptr);
+
+		while(feof(ptr) == false)
+		{
+			contador++;
+			if(registro.estadoVenta == 'A'){
+
+				cout <<endl<<contador<<"."<<registro.IdVenta<<"  \t  "<<registro.fecha<<"  \t  "<<registro.precio<<"  \t  "<<registro.IdVuelo<<"  \t  "<<registro.IdAsiento<<"  \t  "<<registro.IdCliente<<endl;
+			}
+			fread(&registro,sizeof(registro),1,ptr);	
+		}		
+		fclose(ptr);
+	}
+	else
+	{
+		cout << "archivo no existe";
+	}	
+}
+void buscarVenta(int numeroRegistro){
+	FILE *ptr;
+	registroVentas registro;	
+	ptr = fopen(direccionArchivoVentas,"rb");
+
+	if(ptr != NULL)
+	{
+		fseek(ptr,(numeroRegistro-1)*sizeof(registro),SEEK_SET);
+		fread(&registro,sizeof(registro),1,ptr);
+		if(feof(ptr) == false)
+		{			
+			if(registro.estadoVenta == 'A')
+			{ 
+				cout <<endl<<numeroRegistro<<"."<<registro.IdVenta<<"  \t  "<<registro.fecha<<"  \t  "<<registro.precio<<"  \t  "<<registro.IdVuelo<<"  \t  "<<registro.IdAsiento<<"  \t  "<<registro.IdCliente<<endl;
+			}
+			else
+			{
+				cout << "el registro fue eliminado";
+			}			
+		}
+		else
+		{
+			cout <<" registro no existe";
+		}	
+		fclose(ptr);
+	}
+	else
+	{
+		cout <<"archivo no existe";
+	}	
+}
+void modificarVenta(int numeroRegistro){
+	FILE *ptr;
+	registroVentas registro;	
+	char opcion;
+	ptr = fopen(direccionArchivoVentas,"r+b");
+
+	if(ptr != NULL)
+	{
+		fseek(ptr,(numeroRegistro-1)*sizeof(registro),SEEK_SET);
+		fread(&registro,sizeof(registro),1,ptr);
+		if(feof(ptr) == false)
+		{			
+			if(registro.estadoVenta == 'A')
+			{ 
+				cout <<endl<<numeroRegistro<<". "<<registro.IdVenta<<"  \t  "<<registro.fecha<<"  \t  "<<registro.precio<<"  \t  "<<registro.IdVuelo<<"  \t  "<<registro.IdAsiento<<"  \t  "<<registro.IdCliente<<endl;
+				cout << "Confirma modificacion de este registro <S/N> ? : ";
+				cin  >> opcion;
+				if(opcion == 's' || opcion == 'S')
+				{
+					cout << "Introduzca el Id de la venta: ";
+					cin>> registro.IdVenta;
+
+
+					cout<<"Introduza la fecha de la venta: "; //dudaaaaa
+					do{
+							gets(registro.fecha);
+					}while(strlen(registro.fecha) == 0);
+
+
+					cout<<"introduzca el precio: ";  //dudaa
+					cin>>registro.precio;
+
+
+					cout<<"introduzca el Id del vuelo:";//dudaa
+					cin>>registro.IdVuelo;
+
+					cout<<"introduzca el Id del asiento	:";//dudaa
+					cin>>registro.IdAsiento;
+		
+					cout<<"introduzca el Id del cliente	: ";  //duddaaa
+					cin>> registro.IdCliente;
+
+					fseek(ptr,(numeroRegistro-1)*sizeof(registro),SEEK_SET);
+					fwrite(&registro,sizeof(registro),1,ptr);
+					cout << "El registro fue modificado existosamente"<<endl;
+				}
+				else
+				{
+					cout << "El registro no fue modificado"<<endl;
+				}
+			}
+			else
+			{
+				cout << " el registro fue eliminado previamente"<<endl;
+			}			
+		}
+		else
+		{
+			cout <<"el registro no existe"<<endl;
+		}	
+		fclose(ptr);
+	}
+	else
+	{
+		cout << "archivo no existe"<<endl;
+	}	
+}
+void eliminarVenta(int numeroRegistro)
+{
+	FILE *ptr;
+	registroVentas registro;	
+	char opcion;
+	ptr = fopen(direccionArchivoVentas,"r+b");
+
+	if(ptr != NULL)
+	{
+		fseek(ptr,(numeroRegistro-1)*sizeof(registro),SEEK_SET);
+		fread(&registro,sizeof(registro),1,ptr);
+		if(feof(ptr) == false)
+		{			
+			if(registro.estadoVenta == 'A')
+			{ 
+				cout <<endl<<numeroRegistro<<". "<<registro.IdVenta<<"  \t  "<<registro.fecha<<"  \t  "<<registro.precio<<"  \t  "<<registro.IdVuelo<<"  \t  "<<registro.IdAsiento<<"  \t  "<<registro.IdCliente<<endl;
+				cout << " Confirmar si la venta sera eliminada de este registro <S/N> ? : "<<endl;
+				cin  >> opcion;
+				if(opcion == 's' || opcion == 'S')
+				{
+					registro.estadoVenta = 'E';
+					fseek(ptr,(numeroRegistro-1)*sizeof(registro),SEEK_SET);
+					fwrite(&registro,sizeof(registro),1,ptr);
+					cout << "El registro de la venta fue eliminado existosamente "<<endl;
+				}
+				else
+				{
+					cout << "El registro de la venta no fue eliminado"<<endl;
+				}
+			}
+			else
+			{
+				cout << "el registro de la venta fue eliminado previamente"<<endl;
+			}			
+		}
+		else
+		{
+			cout << " el registro no existe en el archivo"<<endl;
+		}	
+		fclose(ptr);
+	}
+	else
+	{
+		cout << "archivo no existe"<<endl;
+	}	
+
+}
+
+
