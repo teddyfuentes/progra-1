@@ -1,0 +1,27 @@
+//hacer una seria que cumpla con la suma de numeros pares hasta un limite N
+// S=2+4+6+8+.... 
+//donde n n es el mayo numero de la serie, si n=7 entonces se debe sumar hasta el limite de 6.
+
+
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+void main()
+{
+	int suma=0,n;// declaracion de variables 
+	cout<<"WELCOME TO MY FIRST PROGRAM WHERE  YOU CAN ENJOY PROGRAMMING!!!!!"<<endl;
+	cout<<" por favor ingresar un numero: ";
+	cin>>n;
+	for (int i=2;i<=n;i=i+2)//contador 
+	{
+		suma=suma+i; //acumulador de la suma 
+	}
+	cout<<endl<<"------------------------------------------------------------";
+	cout<<endl<<"el resultado de la suma es: ";
+	cout<<suma;
+	getch();
+}
+
+
